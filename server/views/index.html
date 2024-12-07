@@ -1,17 +1,28 @@
 <!DOCTYPE html>
-<!--  Licensed to the .NET Foundation under one or more agreements. -->
-<!-- The .NET Foundation licenses this file to you under the MIT license. -->
 <html>
 
     <head>
         <title>c#-research</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type='module' src="./main.js"></script>
+        <link rel="stylesheet" href="css/main.css">
+        <script type='module' src="js/main.js"></script>
     </head>
 
     <body>
-        <span id="out"></span>
+        <div id="main">
+            <h1>WebAssembly with C#</h1>
+            <textarea id="code" rows="10" cols="80">
+using System;
+public class Program {
+    public static void Main() {
+        Console.WriteLine("Hello from dynamically compiled code!");
+    }
+}
+            </textarea>
+            <button id="run">Run</button>
+            <span id="out"></span>
+        </div>
     </body>
 
 </html>

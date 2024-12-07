@@ -69,7 +69,7 @@ public partial class CSharpResearch
 
                 if (!emitResult.Success)
                 {
-                    var errors = string.Join("\n", emitResult.Diagnostics.Where(d => d.Severity == DiagnosticSeverity.Error));
+                    var errors = string.Join("\n", emitResult.Diagnostics.Where(d => d.Severity == DiagnosticSeverity.Error).Select(d => d.GetMessage()));
                     return $"Compilation failed:\n{errors}";
                 }
 

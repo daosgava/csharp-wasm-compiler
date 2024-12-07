@@ -30,7 +30,9 @@ const CompileAndRun = async (code) => {
     }
 
     try {
-        await exports.CSharpResearch.CompileAndRun(code);
+        const result = await exports.CSharpResearch.CompileAndRun(code);
+        const outputElement = document.querySelector('#output');
+        outputElement.textContent = result;
     } catch (error) {
         console.error('Error during code execution:', error);
     }

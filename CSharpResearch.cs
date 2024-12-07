@@ -67,15 +67,18 @@ public partial class CSharpResearch
                 using var ms = new MemoryStream();
                 var emitResult = compilation.Emit(ms);
 
+                // Check for compilation errors
                 if (!emitResult.Success)
                 {
                     var errors = string.Join("\n", emitResult.Diagnostics.Where(d => d.Severity == DiagnosticSeverity.Error).Select(d => d.GetMessage()));
                     return $"Compilation failed:\n{errors}";
                 }
 
+                // Load the compiled assembly into the current AppDomain
                 ms.Seek(0, SeekOrigin.Begin);
                 var assembly = AppDomain.CurrentDomain.Load(ms.ToArray());
 
+                // Get the entry point and invoke it
                 var entryPoint = assembly.EntryPoint;
                 if (entryPoint != null)
                 {

@@ -16,12 +16,17 @@
 using System;
 public class Program {
     public static void Main() {
-        Console.WriteLine("Hello from dynamically compiled code!");
+        for(int i = 0; i < 5; i++) {
+            if(i < 3) {
+                Console.WriteLine("🤡");
+            } else {
+                Console.WriteLine("😎");
+            }
+        }
     }
 }
             </textarea>
             <button id="run">Run</button>
-            <span id="out"></span>
         </div>
     </body>
 

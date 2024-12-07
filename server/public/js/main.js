@@ -16,22 +16,26 @@ const loadDotNet = async () => {
 
     const config = getConfig();
     const exports = await getAssemblyExports(config.mainAssemblyName);
-    return { exports, config };
-}
+    return exports;
+};
 
-const { exports } = await loadDotNet();
-const greetingOutput = exports.CSharpResearch.Greeting();
-console.log(greetingOutput);
-const code = `
-using System;
-public class Program
-{
-    public static void Main()
-    {
-        Console.WriteLine("Hello, World! Compiled and run from main.js");
+const exports = await loadDotNet();
+const greeting = await exports.CSharpResearch.Greeting();
+console.log(greeting);
+
+const CompileAndRun = async (code) => {
+    if (!exports) {
+        console.error('Dotnet runtime is not yet initialized');
+        return;
     }
-}
-`;
-await exports.CSharpResearch.CompileAndRun(code);
 
-await dotnet.run();
+    try {
+        await exports.CSharpResearch.CompileAndRun(code);
+    } catch (error) {
+        console.error('Error during code execution:', error);
+    }
+};
+
+const runButton = document.querySelector('#run');
+const textArea = document.querySelector('#code');
+runButton.addEventListener('click', () => CompileAndRun(textArea.value));

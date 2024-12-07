@@ -12,8 +12,6 @@ Console.WriteLine("Hello, Browser!");
 
 public partial class CSharpResearch
 {
-    [JSImport("window.location.href", "main.js")]
-    internal static partial string GetHRef();
 
     [JSExport]
     internal static string Greeting()
@@ -94,4 +92,7 @@ public partial class CSharpResearch
             }
         });
     }
+
+    [JSImport("window.location.href", "main.js")]
+    internal static partial string GetHRef();
 }

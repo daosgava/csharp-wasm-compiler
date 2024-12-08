@@ -19,18 +19,10 @@ const loadDotNet = async () => {
     return exports;
 };
 
-const exports = await loadDotNet();
-const greeting = await exports.CSharpResearch.Greeting();
-console.log(greeting);
-
 const CompileAndRun = async (code) => {
-    if (!exports) {
-        console.error('Dotnet runtime is not yet initialized');
-        return;
-    }
-
     try {
-        const result = await exports.CSharpResearch.CompileAndRun(code);
+        const exports = await loadDotNet();
+        const result = await exports.CSharpCodeRunner.CompileAndRun(code);
         const outputElement = document.querySelector('#output');
         outputElement.textContent = result;
     } catch (error) {

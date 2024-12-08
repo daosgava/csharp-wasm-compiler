@@ -7,16 +7,8 @@ using Microsoft.CodeAnalysis.CSharp;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-public partial class CSharpResearch
+public partial class CSharpCodeRunner
 {
-
-    [JSExport]
-    internal static string Greeting()
-    {
-        var text = $"Greetings from {GetHRef()}";
-        Console.WriteLine(text + " from Program.cs");
-        return text;
-    }
 
     static async Task<MetadataReference> LoadAssemblyFromServer(string assemblyName)
     {

@@ -14,8 +14,10 @@ if [ $? -eq 0 ]; then
 
     # Copy _framework folder
     cp -r "$SOURCE_DIR"/* "$DEST_DIR"
+    # copy bin/Debug/net8.0/research.dll to public/bin
+    cp bin/Debug/net8.0/research.dll server/public/lib/research.dll
 
-    echo "Copied _framework to $DEST_DIR"
+    echo "Copied _framework and research.dll to public folder."
 else
     echo "Build failed."
 fi

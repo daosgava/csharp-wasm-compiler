@@ -6,7 +6,6 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using System.Net.Http;
 using System.Threading.Tasks;
-
 public partial class CSharpCodeRunner
 {
 
@@ -44,7 +43,9 @@ public partial class CSharpCodeRunner
                     LoadAssemblyFromServer("netstandard.dll"),
                     LoadAssemblyFromServer("System.Console.dll"),
                     LoadAssemblyFromServer("System.Private.CoreLib.dll"),
-                    LoadAssemblyFromServer("System.Runtime.dll")
+                    LoadAssemblyFromServer("System.Runtime.dll"),
+                    LoadAssemblyFromServer("System.Runtime.InteropServices.JavaScript.dll"),
+                    LoadAssemblyFromServer("research.dll")
                 );
 
                 // Create a compilation with the syntax tree and references
@@ -82,11 +83,11 @@ public partial class CSharpCodeRunner
             }
             catch (Exception ex)
             {
-                return $"Error: {ex.Message}";
+                return $"Error: {ex}";
             }
         });
     }
 
     [JSImport("window.location.href", "main.js")]
-    internal static partial string GetHRef();
+    public static partial string GetHRef();
 }

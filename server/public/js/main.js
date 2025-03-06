@@ -1,4 +1,5 @@
 import { dotnet } from '../_framework/dotnet.js';
+import { write_line, fill_ellipse, color_black, GL, _eglCreateContext, _eglCreateWindowSurface } from '../splashKit/SplashKitBackendWASM.js';
 
 const loadDotNet = async () => {
     const { setModuleImports, getAssemblyExports, getConfig } = await dotnet
@@ -11,6 +12,12 @@ const loadDotNet = async () => {
             location: {
                 href: () => globalThis.window.location.href
             }
+        },
+        SplashKitBackendWASM: {
+            write_line,
+            fill_ellipse: () => {
+                fill_ellipse(color_black(), 0, 400, 800, 400);
+            },
         }
     });
 

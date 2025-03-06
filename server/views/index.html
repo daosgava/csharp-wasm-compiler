@@ -11,23 +11,52 @@
 
     <body>
         <div id="main">
-            <h1>C# WebAssembly Compiler</h1>
-            <textarea id="code" rows="10" cols="80">
+            <textarea id="code" rows="44" cols="30">
 using System;
-public class Program {
-    public static void Main() {
-        for(int i = 0; i < 5; i++) {
-            if(i < 4) {
-                Console.WriteLine(i);
-            } else {
-                Console.WriteLine("😎");
-            }
+
+public class Program
+{
+    private static void CheckNumber(int num)
+    {
+        if (num % 2 == 0)
+        {
+            Console.WriteLine($"{num} is even");
+        }
+        else if (IsPrime(num))
+        {
+            Console.WriteLine($"{num} is prime");
+        }
+        else
+        {
+            Console.WriteLine($"{num} is odd but not prime");
+        }
+    }
+
+    private static bool IsPrime(int num)
+    {
+        if (num < 2) return false;
+        for (int i = 2; i * i <= num; i++)
+        {
+            if (num % i == 0) return false;
+        }
+        return true;
+    }
+
+    public static void Main()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            CheckNumber(i);
         }
     }
 }
             </textarea>
             <button id="run">Run</button>
             <div id="output"></div>
+            <div id="canvasContainer" class="sk-contents">
+                <canvas id="canvas" style="margin: auto; outline: none;" oncontextmenu="event.preventDefault()"
+                    tabindex="-1"></canvas>
+            </div>
         </div>
     </body>
 
